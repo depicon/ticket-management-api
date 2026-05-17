@@ -26,6 +26,7 @@ app.use(cors({
   origin: function (origin, callback) {
     // Autorise les requêtes sans origine (comme Postman) ou les origines dans la liste
     if (!origin || origins.indexOf(origin) !== -1) {
+      // console.log('mandeh')
       callback(null, true);
     } else {
       callback(new Error('Non autorisé par CORS'));
@@ -48,7 +49,7 @@ app.use(errorHandler);
 
 // Start server
 app.listen(port, () => {
-  console.log(`🚀 Server running on http://localhost:${port} or ${process.env.PORT} and path: ${path.resolve(`.env.${env}`)}`);
+  console.log(`🚀 Server running on http://localhost:${port} or ${process.env.PORT} and allowed_origin: ${process.env.ALLOWED_ORIGINS}`);
 });
 
 export default app;
